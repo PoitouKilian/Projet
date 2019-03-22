@@ -22,7 +22,8 @@ Route::get('/ronde', function () {
     return view('ronde');
 });
 
-//Route::post('/ronde/submit', 'RondesController@submit');
+Route::post('/ronde/submit', 'RondesController@submitRechercheRonde');
+
 Route::get('/ronde', 'RondesController@retourMesureTableau');
 
 Route::get('/statistique', function () {

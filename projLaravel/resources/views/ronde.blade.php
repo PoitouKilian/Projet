@@ -1,8 +1,9 @@
+<!-- Style page -->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+<!-- Style tableau -->
 <style>
     .filterable {
         width: 100%;
@@ -16,36 +17,39 @@
 
 <div class="container">
     <div class="row">
+        <!-- Filtre de recherche Date-->
         <form method="POST" action="http://172.18.58.86/projetLaravel/ronde/submit" accept-charset="UTF-8">
             <table class="table table-bordered">
-                <tr>
-                    <td>
-                        <label for="dateDebut">Date début:</label>
-                        <input type="date" id="date-start" name="date-start" value="0000-00-00">
-                    </td>
-                    <td>
-                        <label for="dateFin">Date fin:</label>
-                        <input type="date" id="date-stop" name="date-stop" value="0000-00-00">
-                    </td>
-                    <td>
-                        <label for="HeureDeDébut:">Heure de début:</label>
-                        <input type="time" id="time-start" name="time-start"></td>
-                    <td>
-                        <label for="HeureDeFin">Heure de fin:</label>
-                        <input type="time" id="time-stop" name="time-stop">
-                    </td>
-                    <td>
-                        <input type="submit" value="VALIDER">
-                    </td>
-                </tr>
-            </table>
+            <tr>
+                <td>
+                    <label for="startdate">Date début:</label>
+                    <input type="date" id="date-start" name="date-start" value="0000-00-00">
+                </td>
+                <td>
+                    <label for="stopdate">Date fin:</label>
+                    <input type="date" id="date-stop" name="date-stop" value="0000-00-00">
+                </td>
+                <td>
+                    <label for="starttime:">Heure de début:</label>
+                    <input type="time" id="time-start" name="time-start"></td>
+                <td>
+                    <label for="stoptime">Heure de fin:</label>
+                    <input type="time" id="time-stop" name="time-stop">
+                </td>
+                <td>
+                    <input type="submit" value="VALIDER">
+                </td>
+            </tr>
+        </table>
         </form>
+        <!-- Style du tableau -->
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
                 <h3 class="panel-title">Ronde</h3>
             </div>
             <table class="table">
                 <thead>
+                    <!-- En-Tête du tableau -->
                     <tr class="filters">
                         <th>DATE</th>
                         <th><input type="text" class="form-control" placeholder="Agents" enabled></th>
@@ -59,13 +63,14 @@
                             </select></th>
                     </tr>
                 </thead>
+                <!-- Corps du tableau -->
                 <tbody>
                     @if(count($ronde)>0)
                     @foreach($ronde as $ronde)
                     <tr class="content">
                         <td>{{$ronde->date}}</td> 
                         <td>{{$ronde->nom}}</td>
-                        <td>{{$ronde->idRonde}}</td> 
+                        <td>{{$ronde->nomrondes}}</td> 
                     </tr>
                     @endforeach
                     @endif
@@ -76,9 +81,9 @@
 </div>
 
 @endsection
+<!-- Script pour filtre -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script>
@@ -128,6 +133,7 @@
                                     }
                                 });
                             });
+                            /* Filtre des sites */
                             function filterText()
                             {
                                 var rex = new RegExp($('#filterText').val());
@@ -140,7 +146,7 @@
                                     }).show();
                                 }
                             }
-
+                            /* Filtre des sites */
                             function clearFilter()
                             {
                                 $('.filterText').val('');

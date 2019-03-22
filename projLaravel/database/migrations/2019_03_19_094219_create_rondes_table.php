@@ -15,8 +15,8 @@ class CreateRondesTable extends Migration
     {
         Schema::create('rondes', function (Blueprint $table) {
             $table->integer('idrondes',11);
-            $table->varchar('idrondes',30);
-            $table->tinyint('idrondes',4);
+            $table->varchar('nomrondes',30);
+            $table->tinyint('rondeActive',4);
         });
     }
 
