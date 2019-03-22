@@ -20,7 +20,8 @@ class CreateAssociationpointeauxrondesTable extends Migration
             $table->integer('ordrePointeau',11);
             $table->integer('tempsProchainMin',11);
             $table->integer('tempsProchainMax',11);
-         //   $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('idRonde')->references('idrondes')->on('rondes');
+            $table->foreign('idPointeau')->references('idpointeaux')->on('pointeaux');
         });
     }
 

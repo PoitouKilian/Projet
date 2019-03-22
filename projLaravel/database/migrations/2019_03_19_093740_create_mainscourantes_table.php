@@ -19,7 +19,7 @@ class CreateMainscourantesTable extends Migration
             $table->datetime('date');
             $table->integer('type',11);
             $table->integer('idHistoriquePointeau',11);
-           // $table->foreign('idHistoriquePointeau')->references('id')->on('historiquepointeau');
+            $table->foreign('idHistoriquePointeau')->references('id')->on('historiquepointeau');
         });
     }
 

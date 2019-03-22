@@ -22,8 +22,8 @@ Route::get('/ronde', function () {
     return view('ronde');
 });
 
-//Route::get('/ronde', 'RondesController@retourAgents');
-Route::get('/ronde', 'RondesController@retourHistoriquepointeau');
+//Route::post('/ronde/submit', 'RondesController@submit');
+Route::get('/ronde', 'RondesController@retourMesureTableau');
 
 Route::get('/statistique', function () {
     return view('statistique');

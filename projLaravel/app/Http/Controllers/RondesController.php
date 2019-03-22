@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\historiquepointeau;
-use App\agents;
 
 class RondesController extends Controller
 {
         
-    public function retourHistoriquepointeau(){
-        $historiquepointeau= DB::table('historiquepointeau')->get();
-        $agents= DB::table('agents')->get();
+    public function retourMesureTableau(){
+        $Mesure= DB::table('historiquepointeau')
+                ->join('agents','agents.idAgent','=','historiquepointeau.idAgent')
+                ->select('agents.nom','historiquepointeau.date','historiquepointeau.idRonde')
+                ->get();
         
-        return view('ronde')->with('historiquepointeau',$historiquepointeau)
-                ->with('agents',$agents);
+        return view('ronde')->with('ronde',$Mesure);
+        //return $ronde;
         }
         
 }

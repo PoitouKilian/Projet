@@ -5,8 +5,10 @@
         <group>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/historiquepointeau.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/User.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/responsables.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_094209_create_responsables_table.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/layouts/app.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/accueil.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Controller.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_093740_create_mainscourantes_table.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_094156_create_pointeaux_table.php</file>
@@ -25,6 +27,7 @@
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/inc/navbar.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2014_10_12_100000_create_password_resets_table.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/mainscourantes.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/pointeaux.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_083634_agents.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/routes/console.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_094219_create_rondes_table.php</file>

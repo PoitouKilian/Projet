@@ -17,6 +17,8 @@ class CreateAssociationagentsrondesTable extends Migration
             $table->integer('id',11);
             $table->integer('idAgent',11);
             $table->integer('idRonde',11);
+            $table->foreign('idAgent')->references('idAgent')->on('agents');
+            $table->foreign('idRonde')->references('idrondes')->on('rondes');
         });
     }
 

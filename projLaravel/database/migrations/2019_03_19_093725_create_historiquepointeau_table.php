@@ -21,7 +21,9 @@ class CreateHistoriquepointeauTable extends Migration
             $table->datetime('date',11);
             $table->integer('ordrePointeau',11);
             $table->integer('numeroRonde',11);
-           // $table->foreign('idPointeau')->references('idpointeaux')->on('pointeaux');
+            $table->foreign('idAgent')->references('idAgent')->on('agents');
+            $table->foreign('idRonde')->references('idrondes')->on('rondes');
+            $table->foreign('idPointeau')->references('idpointeaux')->on('pointeaux');
           });
     }
 
