@@ -18,14 +18,10 @@ Route::get('/ronde', function () {
     return view('ronde');
 });
 
-Route::get('/ronde', function () {
-    return view('ronde');
-});
-
-Route::post('/ronde/submit', 'RondesController@submitRechercheRonde');
-
-Route::get('/ronde', 'RondesController@retourMesureTableau');
-
 Route::get('/statistique', function () {
     return view('statistique');
 });
+
+Route::post('ronde/submit', 'RondesController@submitRechercheRonde');
+
+Route::get('/ronde', 'RondesController@retourMesureTableau');
