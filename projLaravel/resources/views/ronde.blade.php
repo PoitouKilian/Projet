@@ -8,6 +8,9 @@
     .filterable {
         width: 100%; 
     }
+    .erreur{
+        color: red;
+    }
 </style>
 
 @extends('layouts.app')
@@ -50,112 +53,107 @@
         <div class="panel-heading">
             <h3 class="panel-title">Ronde</h3>
         </div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <!-- En-Tête du tableau -->
-                <tr class="filters">
-                    <th>DATE</th>
-                    <th><input type="text" class="form-control" placeholder="Agents" enabled></th>
-                    <th><input type="text" class="form-control" placeholder="Ronde" enabled></th>
-                    <th><select id='filterText' style='display:inline-block' onchange='filterText()'>
-                            <option disabled selected>Select</option>
-                            <option value='Site1'>Site1</option>
-                            <option value='Site2'>Site2</option>
-                            <option value='Site3'>Site3</option>
-                            <option value='all'>All</option>
-                        </select></th>
-                        <th>Rapports</th>
+                <tr>
+                    <th>Date</th>
+                    <th><input type="text" id="myInput" onkeyup="myFunctionAgents()" placeholder="Agents" enabled></th>
+                    <th><input type="text" id="myInput2" onkeyup="myFunctionRonde()" placeholder="Ronde" enabled></th>
+                    <th>Rapports</th>
                 </tr>
             </thead>
             <!-- Corps du tableau -->
-            <tbody>
-                @if(count($ronde)>0)
-                @foreach($ronde as $tableau)
-                <tr class="content">
-                    <td>{{$tableau->date}}</td> 
-                    <td>{{$tableau->nom}}</td>
-                    <td>{{$tableau->nomrondes}}</td> 
-                    <td></td>
-                    {!! Form::open(['url' => 'ronde/Rapports']) !!}
-                    <td>{!! Form::submit('Selectionnez') !!}</td>
-                    {!! Form::close() !!}
-                </tr>
-                @endforeach
-                @endif
+            <tbody id="myTable">
+                <!-- Si il y a des rondes -->
+                @if(count($rondes)>0)
+                    <!-- Pour chaque rondes qui est une ronde -->
+                    @foreach($rondes as $tableau)
+                        <!-- On prend que les premiers de la ronde -->
+                        @if($tableau->ordrePointeau == 1)
+                            <!-- On regarde si les idHistoriquePointeau de la table 
+                            mains courantes sont des id de la table historiquepointeau -->
+                            @if($erreur->contains('idPremierPointeau',$tableau->id))
+                             <!-- On affiche les erreurs -->
+                                <tr class="erreur">
+                                  <td>{{$tableau->date}}</td> 
+                                  <td>{{$tableau->nom}}</td>
+                                  <td>{{$tableau->nomrondes}}</td> 
+                                   {!! Form::open(['url' => '/ronde/rapport']) !!}
+                                  <td> 
+                                    {{ Form::hidden('idRapport',$tableau->id) }}
+                                  {!! Form::submit('Selectionnez') !!}
+                                  </td>
+                                 {!! Form::close() !!}
+                              </tr>
+                           @else    
+                              <!-- sinon on affiche tout -->
+                                <tr class="content">
+                                    <td>{{$tableau->date}}</td> 
+                                    <td>{{$tableau->nom}}</td>
+                                    <td>{{$tableau->nomrondes}}</td> 
+                                    {!! Form::open(['url' => '/ronde/rapport']) !!}
+                                    <td> 
+                                    {{ Form::hidden('idRapport',$tableau->id) }}
+                                    {!! Form::submit('Selectionnez') !!}
+                                    </td>
+                                  {!! Form::close() !!}
+                                </tr>    
+                            @endif<!-- fin boucle if -->
+                        @endif<!-- fin boucle if -->
+                    @endforeach<!-- fin boucle ronde -->
+                @endif <!-- fin count ronde>0 -->
             </tbody>
         </table>
     </div>
 </div>
-
 @endsection
-<!-- Script pour filtre -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<!-- Filtre pour les agents -->
 <script>
-                        /*
-                         Please consider that the JS part isn't production ready at all, I just code it to show the concept of merging filters and titles together !
-                         */
-                        $(document).ready(function () {
-                            $('.filterable .btn-filter').click(function () {
-                                var $panel = $(this).parents('.filterable'),
-                                        $filters = $panel.find('.filters input'),
-                                        $tbody = $panel.find('.table tbody');
-                                if ($filters.prop('disabled') == true) {
-                                    $filters.prop('disabled', false);
-                                    $filters.first().focus();
-                                } else {
-                                    $filters.val('').prop('disabled', true);
-                                    $tbody.find('.no-result').remove();
-                                    $tbody.find('tr').show();
-                                }
-                            });
+function myFunctionAgents() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
-                            $('.filterable .filters input').keyup(function (e) {
-                                /* Ignore tab key */
-                                var code = e.keyCode || e.which;
-                                if (code == '9')
-                                    return;
-                                /* Useful DOM data and selectors */
-                                var $input = $(this),
-                                        inputContent = $input.val().toLowerCase(),
-                                        $panel = $input.parents('.filterable'),
-                                        column = $panel.find('.filters th').index($input.parents('th')),
-                                        $table = $panel.find('.table'),
-                                        $rows = $table.find('tbody tr');
-                                /* Dirtiest filter function ever ;) */
-                                var $filteredRows = $rows.filter(function () {
-                                    var value = $(this).find('td').eq(column).text().toLowerCase();
-                                    return value.indexOf(inputContent) === -1;
-                                });
-                                /* Clean previous no-result if exist */
-                                $table.find('tbody .no-result').remove();
-                                /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
-                                $rows.show();
-                                $filteredRows.hide();
-                                /* Prepend no-result row if all rows are filtered */
-                                if ($filteredRows.length === $rows.length) {
-                                    $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="' + $table.find('.filters th').length + '">Pas de résultat</td></tr>'));
-                                }
-                            });
-                        });
-                        /* Filtre des sites */
-                        function filterText()
-                        {
-                            var rex = new RegExp($('#filterText').val());
-                            if (rex == "/all/") {
-                                clearFilter()
-                            } else {
-                                $('.content').hide();
-                                $('.content').filter(function () {
-                                    return rex.test($(this).text());
-                                }).show();
-                            }
-                        }
-                        /* Filtre des sites */
-                        function clearFilter()
-                        {
-                            $('.filterText').val('');
-                            $('.content').show();
-                        }
+  // Parcourez toutes les lignes de la table et masquez celles qui ne correspondent pas à la requête de recherche
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+<!-- Filtre pour les rondes -->
+<script>
+function myFunctionRonde() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Parcourez toutes les lignes de la table et masquez celles qui ne correspondent pas à la requête de recherche
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>

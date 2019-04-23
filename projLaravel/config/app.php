@@ -164,11 +164,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
-
+	Reliese\Coders\CodersServiceProvider::class,
         /*
          * Application Service Providers...
          */

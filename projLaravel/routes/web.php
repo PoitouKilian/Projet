@@ -11,17 +11,23 @@
 |
 */
 
+/*Affichage page Accueil*/
 Route::get('/', function () {
     return view('accueil');
 });
-Route::get('/ronde', function () {
+/*Affichage page Ronde*/
+Route::get('/ronde', function () {    
     return view('ronde');
 });
-
+/*Affichage page Statistique*/
 Route::get('/statistique', function () {
     return view('statistique');
 });
 
+
+/*Fonctions pour l'onglet ronde*/
 Route::post('ronde/submit', 'RondesController@submitRechercheRonde');
+
+Route::post('ronde/rapport', 'RondesController@boutonRapport');
 
 Route::get('/ronde', 'RondesController@retourMesureTableau');

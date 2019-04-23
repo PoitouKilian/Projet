@@ -7,51 +7,83 @@ use Illuminate\Http\Request;
 use App\historiquepointeau;
 
 class RondesController extends Controller {
-
+    /**Récupération des mesures pour le tableau ronde**/
     public function retourMesureTableau() {
-        $ronde = DB::table('historiquepointeau')
+        /**Recuperation de toutes les rondes**/
+        $rondes = DB::table('historiquepointeau')
                 ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
                 ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
-                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes')
+                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id','historiquepointeau.ordrePointeau','historiquepointeau.numeroRonde')
                 ->latest('historiquepointeau.date')
+                ->get(); 
+                     
+        /** Recupération des erreurs **/
+        $erreur=DB::table('mainscourantes')
+                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau')                    
                 ->get();
-
-        return view('ronde')->with('ronde', $ronde);
+                
+        return view('ronde')->with('rondes', $rondes)->with('erreur',$erreur);
     }
-
+    /**Récupération des dates dans les filtres dates**/
     public function submitRechercheRonde(Request $request) {
-        //Recuperation de la date de début de recherche
+        //Date de début
         $dateStart = $request->input('date-start');
         $timeStart = $request->input('time-start');
         if ($dateStart == "") {
             $dateStart = "0000-00-00";
         }
         if ($timeStart == "") {
-            $timeStart = "00:00:01";
+            $timeStart = "00:00:00";
         }
         $combinedDTStart = date('Y-m-d H:i:s', strtotime("$dateStart $timeStart"));
 
-        //Recuperation de la date de fin de recherche
+        //Date de fin
         $dateStop = $request->input('date-stop');
         $timeStop = $request->input('time-stop');
         if ($dateStop == "") {
             $dateStop = date("Y-m-d");
         }
         if ($timeStop == "") {
-            $timeStop = "00:00:00";
+            $timeStop = "23:59:59";
         }
-        $combinedDTStop = date('Y-m-d H:i:s', strtotime("$dateStop $timeStart"));
-
-        $ronde = DB::table('historiquepointeau')
+        $combinedDTStop = date('Y-m-d H:i:s', strtotime("$dateStop $timeStop"));
+        
+        //On reprend les informations du tableau
+        $rondes = DB::table('historiquepointeau')
                 ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
                 ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
-                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes')
+                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id')
                 ->latest('historiquepointeau.date')
-                ->where('date', '>', $combinedDTStart)
-                ->where('date', '<', $combinedDTStop)
+                ->where('date', '>=', $combinedDTStart)
+                ->where('date', '<=', $combinedDTStop)
+                ->latest('date')
                 ->get();
 
-        return view('ronde')->with('ronde', $ronde);
+        /** Recupération des erreurs **/
+        $erreur=DB::table('mainscourantes')
+                ->select('mainscourantes.type','mainscourantes.idHistoriquePointeau')
+                ->get();
+                
+        return view('ronde')->with('rondes', $rondes)->with('erreur',$erreur);
     }
+
+    public function boutonRapport(Request $request) {
+        /**Récupération des informations pour le rapport**/
+        $idrapport = $request->idRapport;
+        $donneesRapport = DB::table('historiquepointeau')
+                        ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
+                        ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
+                        ->join('pointeaux', 'pointeaux.idpointeaux', '=', 'historiquepointeau.idPointeau')
+                        ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id', 'historiquepointeau.ordrePointeau', 'historiquepointeau.numeroRonde', 'pointeaux.lieu')
+                        ->where('id', '=', $idrapport)->get();
+        
+        /** Recupération des erreurs **/
+        $erreur=DB::table('mainscourantes')
+                ->select('mainscourantes.idHistoriquePointeau')                    
+                ->get();
+
+        return view('rapport')->with('donneesRapport', $donneesRapport)->with('erreur',$erreur);
+    }
+
 
 }
