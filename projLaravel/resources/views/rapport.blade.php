@@ -8,44 +8,55 @@
 @if(count($donneesRapport)>0)
      <!-- Pour chaque rondes qui est une ronde -->
     @foreach($donneesRapport as $donnees)
-        <!-- On regarde si les idHistoriquePointeau de la table 
-        mains courantes sont des id de la table historiquepointeau -->
-        @if($erreur->contains('idHistoriquePointeau',$donnees->id))
-            <!-- On affiche les erreurs -->
-            <h1>Rapport avec erreur</h1>
-            <br>
-            <br>
-            <ul class="list-group">
-                <li class="list-group-item">Date : {{$donnees->date}}</li>
-                <li class="list-group-item">Agent : {{$donnees->nom}}</li>
-                <li class="list-group-item">Ronde : {{$donnees->nomrondes}}</li>
-                <li class="list-group-item">IDHistoriquePointeau : {{$donnees->id}}</li>
-                <li class="list-group-item">IDPointeau : {{$donnees->lieu}}</li>
-            </ul>
-            <ul class="list-group">
-                <li class="list-group-item">ordrePointeau : {{$donnees->ordrePointeau}}</li>
-                <li class="list-group-item">numeroRonde : {{$donnees->numeroRonde}}</li>
-            </ul>
-        @else
-        <h1>Rapport sans erreur</h1>
+            <!-- On regarde si les idPremierPointeau de la table 
+            mains courantes sont des id de la table historiquepointeau -->   
+            @if($erreur->contains('idPremierPointeau',$donnees->id))
+                <!-- On affiche un texte si il y a eu des erreurs -->
+                <h1>Rapport avec erreur</h1>
+            @else
+                <h1>Rapport sans erreur</h1>    
+            @endif<!-- fin boucle if -->    
         <br>
         <br>
         <ul class="list-group">
             <li class="list-group-item">Date : {{$donnees->date}}</li>
-            <li class="list-group-item">Agent : {{$donnees->nom}}</li>
+            <li class="list-group-item">Agent : {{$donnees->nom}} {{$donnees->prenom}}</li>
             <li class="list-group-item">Ronde : {{$donnees->nomrondes}}</li>
-            <li class="list-group-item">IDHistoriquePointeau : {{$donnees->id}}</li>
-            <li class="list-group-item">IDPointeau : {{$donnees->lieu}}</li>
-        </ul>
-
-        <ul class="list-group">
-            <li class="list-group-item">ordrePointeau : {{$donnees->ordrePointeau}}</li>
-            <li class="list-group-item">numeroRonde : {{$donnees->numeroRonde}}</li>
-        </ul>
-        @endif<!-- fin boucle if -->
+            <li class="list-group-item">NumeroRonde : {{$donnees->numeroRonde}}</li>
+            <br>
+            <br>
+        </ul>  
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Poiteaux</th>
+                    <th>Heure de pointage</th>
+                    <th>Retard</th>
+                    <th>Commentaire</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            @if(count($donneesNumeroRonde)>0)
+                <!-- Pour chaque rondes qui est une ronde -->
+                @foreach($donneesNumeroRonde as $numeroRondeCourante)  
+                <tbody>     
+                <tr>
+                    <td>{{$numeroRondeCourante->lieu}}</td>
+                    <td>{{$numeroRondeCourante->date}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+                @endforeach<!-- fin boucle idtable -->
+            @endif <!-- fin count ronde>0 -->              
+        </table>      
     @endforeach<!-- fin boucle idtable -->
 @endif <!-- fin count ronde>0 -->
 
+<br>
+<br>
+<br>
 <button onclick="history.back()">Retour</button>
 
 

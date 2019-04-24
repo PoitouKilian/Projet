@@ -66,35 +66,36 @@
             <!-- Corps du tableau -->
             <tbody id="myTable">
                 <!-- Si il y a des rondes -->
-                @if(count($rondes)>0)
+                @if(count($rondeseffectuees)>0)
                     <!-- Pour chaque rondes qui est une ronde -->
-                    @foreach($rondes as $tableau)
+                    @foreach($rondeseffectuees as $rondescourantes)
                         <!-- On prend que les premiers de la ronde -->
-                        @if($tableau->ordrePointeau == 1)
+                        @if($rondescourantes->ordrePointeau == 1)
                             <!-- On regarde si les idHistoriquePointeau de la table 
                             mains courantes sont des id de la table historiquepointeau -->
-                            @if($erreur->contains('idPremierPointeau',$tableau->id))
-                             <!-- On affiche les erreurs -->
+                            @if($erreur->contains('idPremierPointeau',$rondescourantes->id))
+                                <!-- On affiche les erreurs -->
                                 <tr class="erreur">
-                                  <td>{{$tableau->date}}</td> 
-                                  <td>{{$tableau->nom}}</td>
-                                  <td>{{$tableau->nomrondes}}</td> 
+                                  <td>{{$rondescourantes->date}}</td> 
+                                  <td>{{$rondescourantes->nom}}</td>
+                                  <td>{{$rondescourantes->nomrondes}}</td> 
                                    {!! Form::open(['url' => '/ronde/rapport']) !!}
                                   <td> 
-                                    {{ Form::hidden('idRapport',$tableau->id) }}
+                                    {{ Form::hidden('idRapport',$rondescourantes->id) }}
+                                    {{ Form::hidden('idNumeroRonde',$rondescourantes->numeroRonde) }}
                                   {!! Form::submit('Selectionnez') !!}
                                   </td>
                                  {!! Form::close() !!}
-                              </tr>
-                           @else    
-                              <!-- sinon on affiche tout -->
+                                </tr>
+                            @else    
+                                <!-- sinon on affiche tout -->
                                 <tr class="content">
-                                    <td>{{$tableau->date}}</td> 
-                                    <td>{{$tableau->nom}}</td>
-                                    <td>{{$tableau->nomrondes}}</td> 
+                                    <td>{{$rondescourantes->date}}</td> 
+                                    <td>{{$rondescourantes->nom}}</td>
+                                    <td>{{$rondescourantes->nomrondes}}</td> 
                                     {!! Form::open(['url' => '/ronde/rapport']) !!}
                                     <td> 
-                                    {{ Form::hidden('idRapport',$tableau->id) }}
+                                    {{ Form::hidden('idRapport',$rondescourantes->id) }}
                                     {!! Form::submit('Selectionnez') !!}
                                     </td>
                                   {!! Form::close() !!}
