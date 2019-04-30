@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/historiquepointeau.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/ronde.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/rapport.blade.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/accueil.blade.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Historiquepointeau.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Pointeaux.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/ronde.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/RondesController.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/routes/web.php</file>
         </group>
     </open-files>
 </project-private>

@@ -3,14 +3,22 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+<style>
+    .titreRapport
+    {
+        background-color:#eeeeee;
+    }
+    .erreur{
+        color: red;
+    }
+</style>
 <!-- Si il y a des rondes -->
 @if(count($donneesRapport)>0)
      <!-- Pour chaque rondes qui est une ronde -->
     @foreach($donneesRapport as $donnees)
             <!-- On regarde si les idPremierPointeau de la table 
             mains courantes sont des id de la table historiquepointeau -->   
-            @if($erreur->contains('idPremierPointeau',$donnees->id))
+            @if($erreurRonde->contains('idPremierPointeau',$donnees->id))
                 <!-- On affiche un texte si il y a eu des erreurs -->
                 <h1>Rapport avec erreur</h1>
             @else
@@ -27,9 +35,10 @@
             <br>
         </ul>  
         
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-bordered">
+            <thead class="titreRapport">
                 <tr>
+                    <th>ID</th>
                     <th>Poiteaux</th>
                     <th>Heure de pointage</th>
                     <th>Retard</th>
@@ -37,19 +46,37 @@
                     <th>Photo</th>
                 </tr>
             </thead>
-            @if(count($donneesNumeroRonde)>0)
+            <tbody> 
                 <!-- Pour chaque rondes qui est une ronde -->
-                @foreach($donneesNumeroRonde as $numeroRondeCourante)  
-                <tbody>     
-                <tr>
-                    <td>{{$numeroRondeCourante->lieu}}</td>
-                    <td>{{$numeroRondeCourante->date}}</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-                @endforeach<!-- fin boucle idtable -->
-            @endif <!-- fin count ronde>0 -->              
+                @foreach($donneesNumeroRonde as $numeroRondeCourante) 
+                    <!--Si il y a des erreurs-->
+                    @if($erreurRonde->contains('idHistoriquePointeau',$numeroRondeCourante->id))
+                    
+                        <!-- Pour chaque rondes avec erreurs on les affiches -->
+                         @foreach($donneesNumeroRondeErreur as $numeroRondeCourantErreur)
+                         @if($numeroRondeCourantErreur->type == 0)
+                        <tr class="erreur"> 
+                            <td>{{$numeroRondeCourantErreur->id}}</td>
+                            <td>{{$numeroRondeCourantErreur->lieu}}</td>
+                            <td>{{$numeroRondeCourantErreur->date}}</td>
+                            <td></td>       
+                            <td>{{$numeroRondeCourantErreur->texte}}</td>
+                            <td></td>
+                        </tr>
+                        @endif
+                        @endforeach
+                    @else
+                    <tr> 
+                        <td>{{$numeroRondeCourante->id}}</td>
+                        <td>{{$numeroRondeCourante->lieu}}</td>
+                        <td>{{$numeroRondeCourante->date}}</td>
+                        <td></td>       
+                        <td></td>
+                        <td></td>
+                    </tr> 
+                    @endif
+                @endforeach<!-- fin boucle idtable -->       
+            </tbody>
         </table>      
     @endforeach<!-- fin boucle idtable -->
 @endif <!-- fin count ronde>0 -->

@@ -48,11 +48,12 @@ class RondesController extends Controller {
         }
         $combinedDTStop = date('Y-m-d H:i:s', strtotime("$dateStop $timeStop"));
         
-        //On reprend les informations du tableau
-        $rondes = DB::table('historiquepointeau')
+        //On reprend les informations du tableau          
+        
+        $rondeseffectuees = DB::table('historiquepointeau')
                 ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
                 ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
-                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id')
+                ->select('agents.nom', 'historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id','historiquepointeau.ordrePointeau','historiquepointeau.numeroRonde')
                 ->latest('historiquepointeau.date')
                 ->where('date', '>=', $combinedDTStart)
                 ->where('date', '<=', $combinedDTStop)
@@ -64,7 +65,7 @@ class RondesController extends Controller {
                 ->select('mainscourantes.type','mainscourantes.idHistoriquePointeau')
                 ->get();
                 
-        return view('ronde')->with('rondes', $rondes)->with('erreur',$erreur);
+        return view('ronde')->with('rondeseffectuees', $rondeseffectuees)->with('erreur',$erreur);
     }
 
     public function boutonRapport(Request $request) {
@@ -87,12 +88,22 @@ class RondesController extends Controller {
                         ->select('agents.nom','agents.prenom','historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id', 'historiquepointeau.ordrePointeau', 'historiquepointeau.numeroRonde', 'pointeaux.lieu')
                         ->where('numeroRonde', '=', $idNumeroRonde)->get();
         
+        $donneesNumeroRondeErreur = DB::table('historiquepointeau')
+                        ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
+                        ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
+                        ->join('pointeaux', 'pointeaux.idpointeaux', '=', 'historiquepointeau.idPointeau')
+                        ->join('mainscourantes','mainscourantes.idHistoriquePointeau','=','historiquepointeau.id')
+                        ->select('agents.nom','agents.prenom','historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id', 'historiquepointeau.ordrePointeau', 'historiquepointeau.numeroRonde', 'pointeaux.lieu','mainscourantes.texte','mainscourantes.type','mainscourantes.idHistoriquePointeau')
+                        ->where('numeroRonde', '=', $idNumeroRonde)
+                        ->oldest('historiquepointeau.date')
+                        ->get();
+        
         /** Recupération des erreurs **/
-        $erreur=DB::table('mainscourantes')
-                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau')                    
+        $erreurRonde=DB::table('mainscourantes')
+                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau','mainscourantes.texte','mainscourantes.type')                    
                 ->get();
 
-        return view('rapport')->with('donneesRapport', $donneesRapport)->with('donneesNumeroRonde', $donneesNumeroRonde)->with('erreur',$erreur);
+        return view('rapport')->with('donneesRapport', $donneesRapport)->with('donneesNumeroRonde', $donneesNumeroRonde)->with('donneesNumeroRondeErreur', $donneesNumeroRondeErreur)->with('erreurRonde',$erreurRonde);
     }
 
 

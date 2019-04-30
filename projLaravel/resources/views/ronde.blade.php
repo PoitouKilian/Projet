@@ -78,7 +78,7 @@
                                 <tr class="erreur">
                                   <td>{{$rondescourantes->date}}</td> 
                                   <td>{{$rondescourantes->nom}}</td>
-                                  <td>{{$rondescourantes->nomrondes}}</td> 
+                                  <td>{{$rondescourantes->nomrondes}}</td>
                                    {!! Form::open(['url' => '/ronde/rapport']) !!}
                                   <td> 
                                     {{ Form::hidden('idRapport',$rondescourantes->id) }}
@@ -96,6 +96,7 @@
                                     {!! Form::open(['url' => '/ronde/rapport']) !!}
                                     <td> 
                                     {{ Form::hidden('idRapport',$rondescourantes->id) }}
+                                    {{ Form::hidden('idNumeroRonde',$rondescourantes->numeroRonde) }}
                                     {!! Form::submit('Selectionnez') !!}
                                     </td>
                                   {!! Form::close() !!}
