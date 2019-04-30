@@ -47,24 +47,31 @@
                 </tr>
             </thead>
             <tbody> 
-                <!-- Pour chaque rondes qui est une ronde -->
+                <!-- Pour la ronde qui est le pointeau -->
                 @foreach($donneesNumeroRonde as $numeroRondeCourante) 
                     <!--Si il y a des erreurs-->
                     @if($erreurRonde->contains('idHistoriquePointeau',$numeroRondeCourante->id))
-                    
-                        <!-- Pour chaque rondes avec erreurs on les affiches -->
-                         @foreach($donneesNumeroRondeErreur as $numeroRondeCourantErreur)
-                         @if($numeroRondeCourantErreur->type == 0)
+                        <!-- Pour la ronde avec erreurs -->
                         <tr class="erreur"> 
-                            <td>{{$numeroRondeCourantErreur->id}}</td>
-                            <td>{{$numeroRondeCourantErreur->lieu}}</td>
-                            <td>{{$numeroRondeCourantErreur->date}}</td>
-                            <td></td>       
-                            <td>{{$numeroRondeCourantErreur->texte}}</td>
+                            <td>{{$numeroRondeCourante->id}}</td>
+                            <td>{{$numeroRondeCourante->lieu}}</td>
+                            <td>{{$numeroRondeCourante->date}}</td>
                             <td></td>
+                            <!-- commentaire -->
+                            <!-- Pour la ronde qui est un pointeau avec erreur -->
+                            @foreach($donneesNumeroRondeErreur as $pointeauxCourantErreur)
+                                <!--Si le idHistoriquePointeau de la table mainscourantes et égal à l'id de historiquepointeau-->
+                                @if($pointeauxCourantErreur->idHistoriquePointeau == $numeroRondeCourante->id)
+                                    @if($pointeauxCourantErreur->type == 0)
+                                        <td>{{$pointeauxCourantErreur->texte}}</td>
+                                    @endif
+                                    @if($pointeauxCourantErreur->type == 1)
+                                        <td>1</td>
+                                    @endif
+                                @endif 
+                            @endforeach
+                           
                         </tr>
-                        @endif
-                        @endforeach
                     @else
                     <tr> 
                         <td>{{$numeroRondeCourante->id}}</td>

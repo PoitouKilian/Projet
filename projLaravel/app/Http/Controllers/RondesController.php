@@ -89,11 +89,9 @@ class RondesController extends Controller {
                         ->where('numeroRonde', '=', $idNumeroRonde)->get();
         
         $donneesNumeroRondeErreur = DB::table('historiquepointeau')
-                        ->join('agents', 'agents.idAgent', '=', 'historiquepointeau.idAgent')
-                        ->join('rondes', 'rondes.idrondes', '=', 'historiquepointeau.idRonde')
                         ->join('pointeaux', 'pointeaux.idpointeaux', '=', 'historiquepointeau.idPointeau')
                         ->join('mainscourantes','mainscourantes.idHistoriquePointeau','=','historiquepointeau.id')
-                        ->select('agents.nom','agents.prenom','historiquepointeau.date', 'rondes.nomrondes', 'historiquepointeau.id', 'historiquepointeau.ordrePointeau', 'historiquepointeau.numeroRonde', 'pointeaux.lieu','mainscourantes.texte','mainscourantes.type','mainscourantes.idHistoriquePointeau')
+                        ->select('historiquepointeau.date','historiquepointeau.id', 'historiquepointeau.numeroRonde', 'pointeaux.lieu','mainscourantes.texte','mainscourantes.type','mainscourantes.idHistoriquePointeau')
                         ->where('numeroRonde', '=', $idNumeroRonde)
                         ->oldest('historiquepointeau.date')
                         ->get();
