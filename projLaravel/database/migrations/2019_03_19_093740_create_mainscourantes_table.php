@@ -17,9 +17,9 @@ class CreateMainscourantesTable extends Migration
             $table->integer('id',11);
             $table->varchar('texte',250);
             $table->datetime('date');
-            $table->integer('type',11);
             $table->integer('idHistoriquePointeau',11);
             $table->foreign('idHistoriquePointeau')->references('id')->on('historiquepointeau');
+            $table->integer('photos',11);
         });
     }
 

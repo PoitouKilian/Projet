@@ -22,6 +22,7 @@ class RondesController extends Controller {
                 ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau')                    
                 ->get();
                 
+
         return view('ronde')->with('rondeseffectuees', $rondeseffectuees)->with('erreur',$erreur);
     }
     /**Récupération des dates dans les filtres dates**/
@@ -48,6 +49,13 @@ class RondesController extends Controller {
         }
         $combinedDTStop = date('Y-m-d H:i:s', strtotime("$dateStop $timeStop"));
         
+        //Verification si date debut est bien superieur a date de fin
+        if($combinedDTStart > $combinedDTStop){
+            //Inversion des dates
+            $tmp = $combinedDTStart;
+            $combinedDTStart = $combinedDTStop;
+            $combinedDTStop = $tmp;
+        }
         //On reprend les informations du tableau          
         
         $rondeseffectuees = DB::table('historiquepointeau')
@@ -62,7 +70,7 @@ class RondesController extends Controller {
 
         /** Recupération des erreurs **/
         $erreur=DB::table('mainscourantes')
-                ->select('mainscourantes.type','mainscourantes.idHistoriquePointeau')
+                ->select('mainscourantes.photos','mainscourantes.idHistoriquePointeau')
                 ->get();
                 
         return view('ronde')->with('rondeseffectuees', $rondeseffectuees)->with('erreur',$erreur);
@@ -91,18 +99,36 @@ class RondesController extends Controller {
         $donneesNumeroRondeErreur = DB::table('historiquepointeau')
                         ->join('pointeaux', 'pointeaux.idpointeaux', '=', 'historiquepointeau.idPointeau')
                         ->join('mainscourantes','mainscourantes.idHistoriquePointeau','=','historiquepointeau.id')
-                        ->select('historiquepointeau.date','historiquepointeau.id', 'historiquepointeau.numeroRonde', 'pointeaux.lieu','mainscourantes.texte','mainscourantes.type','mainscourantes.idHistoriquePointeau')
+                        ->select('historiquepointeau.date','historiquepointeau.id', 'historiquepointeau.numeroRonde', 'pointeaux.lieu','mainscourantes.texte','mainscourantes.photos','mainscourantes.idHistoriquePointeau')
                         ->where('numeroRonde', '=', $idNumeroRonde)
                         ->oldest('historiquepointeau.date')
                         ->get();
         
         /** Recupération des erreurs **/
         $erreurRonde=DB::table('mainscourantes')
-                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau','mainscourantes.texte','mainscourantes.type')                    
+                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau','mainscourantes.texte','mainscourantes.photos')                    
                 ->get();
 
         return view('rapport')->with('donneesRapport', $donneesRapport)->with('donneesNumeroRonde', $donneesNumeroRonde)->with('donneesNumeroRondeErreur', $donneesNumeroRondeErreur)->with('erreurRonde',$erreurRonde);
     }
 
-
+    public function boutonPhotos(Request $request) {
+        /**Récupération des informations pour le rapport**/
+        $idmainscourantes = $request->idmainscourantes;
+        
+        $donneesPointeauErreur = DB::table('historiquepointeau')
+                        ->join('mainscourantes','mainscourantes.idHistoriquePointeau','=','historiquepointeau.id')
+                        ->select('historiquepointeau.id','historiquepointeau.idPointeau', 'historiquepointeau.numeroRonde','mainscourantes.texte','mainscourantes.photos','mainscourantes.idHistoriquePointeau')
+                        ->where('historiquepointeau.id', '=', $idmainscourantes)
+                        ->get();
+        
+        return view('photos')->with('donneesPointeauErreur',$donneesPointeauErreur);
+    }
+    
+    public function retourStatsErreurRonde(){
+    
+        return view('statistique');
+    }
 }
+
+    

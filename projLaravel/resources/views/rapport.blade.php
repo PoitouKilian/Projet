@@ -62,15 +62,20 @@
                             @foreach($donneesNumeroRondeErreur as $pointeauxCourantErreur)
                                 <!--Si le idHistoriquePointeau de la table mainscourantes et égal à l'id de historiquepointeau-->
                                 @if($pointeauxCourantErreur->idHistoriquePointeau == $numeroRondeCourante->id)
-                                    @if($pointeauxCourantErreur->type == 0)
+                                    @if($pointeauxCourantErreur->photos == 0)
                                         <td>{{$pointeauxCourantErreur->texte}}</td>
-                                    @endif
-                                    @if($pointeauxCourantErreur->type == 1)
-                                        <td>1</td>
+                                    @else
+                                        @if($pointeauxCourantErreur->photos == 1)
+                                        {!! Form::open(['url' => '/ronde/rapport/photos']) !!}
+                                        <td> 
+                                        {{ Form::hidden('idmainscourantes',$numeroRondeCourante->id) }}
+                                        {!! Form::submit('Selectionnez') !!}
+                                        </td>
+                                        {!! Form::close() !!}
+                                        @endif
                                     @endif
                                 @endif 
                             @endforeach
-                           
                         </tr>
                     @else
                     <tr> 
