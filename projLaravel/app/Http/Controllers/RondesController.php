@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\historiquepointeau;
+use App\Charts\Chart;
 
 class RondesController extends Controller {
     /**Récupération des mesures pour le tableau ronde**/
