@@ -19,19 +19,15 @@
             <thead class="titreRapport">
                 <tr>
                     <th>Nombre d'erreur dans chaque ronde</th>
-                    <th>Nombre d'erreur en fonction de l'agent</th>
-                    <th>Nombre d'erreur en fonction de la ronde</th>
-                    <th>Nombre de ronde</th>
-                    <th>Nombre de ronde avec erreur</th>
+                    <th>Nombre d'erreur</th>
+                    <th>Nombre de ronde correct</th>
                 </tr>
             </thead>
             <tbody> 
                     <tr> 
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>       
-                        <td><input type="button" value="Selectionnez"></td>
+                        <td style="width:30%;"><input type="button" value="Selectionnez"></td>
+                        <td style="width:30%;"><input type="button" value="Selectionnez"></td>
+                        <td style="width:30%;"><input type="button" value="Selectionnez"></td>
                     </tr> 
             </tbody>
         </table>   
@@ -39,18 +35,14 @@
     <table class="table table-bordered">
             <thead class="titreRapport">
                 <tr>
-                    <th>Nombre de ronde correct</th>
-                    <th>Ronde qui à généré le plus d'erreur</th>
                     <th>Ronde qui à généré le plus de retard</th>
                     <th>Ronde qui à généré le plus d'avance</th>
                 </tr>
             </thead>
             <tbody> 
                     <tr> 
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>
-                        <td><input type="button" value="Selectionnez"></td>
+                        <td style="width:30%;"><input type="button" value="Selectionnez"></td>
+                        <td style="width:30%;"><input type="button" value="Selectionnez"></td>
                     </tr> 
             </tbody>
         </table>   

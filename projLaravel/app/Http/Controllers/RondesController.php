@@ -114,19 +114,40 @@ class RondesController extends Controller {
     }
 
     public function boutonPhotos(Request $request) {
-        /**Récupération des informations pour le rapport**/
+        /**Récupération des informations pour les photos**/
         $idmainscourantes = $request->idmainscourantes;
         
         $donneesPointeauErreur = DB::table('historiquepointeau')
                         ->join('mainscourantes','mainscourantes.idHistoriquePointeau','=','historiquepointeau.id')
-                        ->select('historiquepointeau.id','historiquepointeau.idPointeau', 'historiquepointeau.numeroRonde','mainscourantes.texte','mainscourantes.photos','mainscourantes.idHistoriquePointeau')
+                        ->select('historiquepointeau.id','historiquepointeau.idPointeau',
+                                'historiquepointeau.numeroRonde','mainscourantes.photos')
                         ->where('historiquepointeau.id', '=', $idmainscourantes)
                         ->get();
         
         return view('photos')->with('donneesPointeauErreur',$donneesPointeauErreur);
     }
     
-    public function retourStatsErreurRonde(){
+    public function retourStatsNbErreurRonde(){
+    
+        return view('statistique');
+    }
+    
+    public function retourStatsNbErreur(){
+    
+        return view('statistique');
+    }
+    
+    public function retourStatsNbRondeCorrect(){
+    
+        return view('statistique');
+    }
+    
+    public function retourStatsRondeRetard(){
+    
+        return view('statistique');
+    }
+    
+    public function retourStatsRondeAvance(){
     
         return view('statistique');
     }

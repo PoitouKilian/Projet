@@ -28,12 +28,22 @@ Route::get('/statistique', function () {
 /*Fonctions pour l'onglet ronde*/
 Route::post('ronde/submit', 'RondesController@submitRechercheRonde');
 
+Route::get('/ronde', 'RondesController@retourMesureTableau');
+
+/*Fonctions pour l'onglet photos*/
 Route::post('ronde/rapport/photos', 'RondesController@boutonPhotos');
 
+/*Fonctions pour l'onglet rapport*/
 Route::post('ronde/rapport', 'RondesController@boutonRapport');
-
-Route::get('/ronde', 'RondesController@retourMesureTableau');
 
 /*Fonctions pour l'onglet statistique*/
 
-Route::get('/statistique', 'RondesController@retourStatsErreurRonde');
+Route::get('/statistique', 'RondesController@retourStatsNbErreurRonde');
+
+Route::get('/statistique', 'RondesController@retourStatsNbErreur');
+
+Route::get('/statistique', 'RondesController@retourStatsNbRondeCorrect');
+
+Route::get('/statistique', 'RondesController@retourStatsRondeRetard');
+
+Route::get('/statistique', 'RondesController@retourStatsRondeAvance');
