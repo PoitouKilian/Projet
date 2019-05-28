@@ -4,28 +4,49 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/historiquepointeau.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/rapport.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/responsables.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/photos.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Auth/RegisterController.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Ronde.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/agents.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Auth/LoginController.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/public/web.config</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/layouts/app.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/accueil.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Historiquepointeau.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Controller.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_094156_create_pointeaux_table.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/inc/navbar.blade.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_093725_create_historiquepointeau_table.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Auth/ForgotPasswordController.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Charts/Chart.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/statistique.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/ronde.blade.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_093618_create_associationpointeauxrondes_table.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/lang/en/pagination.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/config/auth.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/public/index.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Smartphone.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/welcome.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/.env</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/Auth/ResetPasswordController.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/RondesController.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Mainscourante.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/routes/channels.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/authentification.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/lang/en/validation.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/agents.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/config/view.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/inc/navbar.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2019_03_19_093725_create_historiquepointeau_table.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Associationagentsronde.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/database/migrations/2014_10_12_100000_create_password_resets_table.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/mainscourantes.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/config/charts.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Smartphone.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/views/welcome.blade.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/lang/en/auth.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/routes/console.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Http/Controllers/RondesController.php</file>
+            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/resources/lang/en/passwords.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/routes/web.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Agent.php</file>
             <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Responsable.php</file>
-            <file>file:/home/USERS/ELEVES/SNIR2017/kpoitou/remote/var/www/projLaravel/app/Models/Mainscourante.php</file>
         </group>
     </open-files>
 </project-private>

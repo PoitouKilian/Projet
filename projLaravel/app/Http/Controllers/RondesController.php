@@ -71,9 +71,9 @@ class RondesController extends Controller {
 
         /** Recupération des erreurs **/
         $erreur=DB::table('mainscourantes')
-                ->select('mainscourantes.photos','mainscourantes.idHistoriquePointeau')
+                ->select('mainscourantes.idHistoriquePointeau','mainscourantes.idPremierPointeau')                    
                 ->get();
-                
+                                
         return view('ronde')->with('rondeseffectuees', $rondeseffectuees)->with('erreur',$erreur);
     }
 
@@ -128,8 +128,8 @@ class RondesController extends Controller {
     }
     
     public function retourStatsNbErreurRonde(){
-    
-        return view('statistique');
+       
+       return view('statistique');   
     }
     
     public function retourStatsNbErreur(){
@@ -150,6 +150,11 @@ class RondesController extends Controller {
     public function retourStatsRondeAvance(){
     
         return view('statistique');
+    }
+    
+    public function login(){
+        
+        return view('authentification');
     }
 }
 

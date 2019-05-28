@@ -41,7 +41,6 @@
                     <th>ID</th>
                     <th>Poiteaux</th>
                     <th>Heure de pointage</th>
-                    <th>Retard</th>
                     <th>Commentaire</th>
                     <th>Photo</th>
                 </tr>
@@ -56,7 +55,6 @@
                             <td>{{$numeroRondeCourante->id}}</td>
                             <td>{{$numeroRondeCourante->lieu}}</td>
                             <td>{{$numeroRondeCourante->date}}</td>
-                            <td></td>
                             <!-- commentaire -->
                             <!-- Pour la ronde qui est un pointeau avec erreur -->
                             @foreach($donneesNumeroRondeErreur as $pointeauxCourantErreur)
@@ -82,7 +80,6 @@
                         <td>{{$numeroRondeCourante->id}}</td>
                         <td>{{$numeroRondeCourante->lieu}}</td>
                         <td>{{$numeroRondeCourante->date}}</td>
-                        <td></td>       
                         <td></td>
                         <td></td>
                     </tr> 

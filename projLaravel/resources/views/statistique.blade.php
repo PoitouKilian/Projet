@@ -8,8 +8,6 @@
 @section('content')
 <h1>Statistique</h1> 
 
-
-
 <img src="IMAGES/diagramme.jpg" style="width: 100%; margin-left: 30%;">
 <br>
 <br>
@@ -46,5 +44,6 @@
                     </tr> 
             </tbody>
         </table>   
+    
 </div>
 @endsection

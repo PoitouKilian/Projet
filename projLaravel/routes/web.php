@@ -23,6 +23,10 @@ Route::get('/ronde', function () {
 Route::get('/statistique', function () {
     return view('statistique');
 });
+/*Affichage page Statistique*/
+Route::get('/authentification', function () {
+    return view('authentification');
+});
 
 
 /*Fonctions pour l'onglet ronde*/
@@ -47,3 +51,5 @@ Route::get('/statistique', 'RondesController@retourStatsNbRondeCorrect');
 Route::get('/statistique', 'RondesController@retourStatsRondeRetard');
 
 Route::get('/statistique', 'RondesController@retourStatsRondeAvance');
+
+Route::get('/authentification', 'RondesController@login');
