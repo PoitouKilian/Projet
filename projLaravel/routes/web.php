@@ -41,15 +41,8 @@ Route::post('ronde/rapport/photos', 'RondesController@boutonPhotos');
 Route::post('ronde/rapport', 'RondesController@boutonRapport');
 
 /*Fonctions pour l'onglet statistique*/
-
-Route::get('/statistique', 'RondesController@retourStatsNbErreurRonde');
-
 Route::get('/statistique', 'RondesController@retourStatsNbErreur');
 
-Route::get('/statistique', 'RondesController@retourStatsNbRondeCorrect');
+/*Fonctions pour l'onglet authentification*/
+Route::get('/', 'RondesController@login');
 
-Route::get('/statistique', 'RondesController@retourStatsRondeRetard');
-
-Route::get('/statistique', 'RondesController@retourStatsRondeAvance');
-
-Route::get('/authentification', 'RondesController@login');
